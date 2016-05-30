@@ -1,2 +1,1 @@
-# space-simulation.github.io
-Space simulation
+# deep-space

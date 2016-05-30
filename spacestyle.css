@@ -19,8 +19,8 @@ canvas.deep_space {
 }
 
 #wrap {
-	width: 900px;
-	height: 1200px;
+	min-width: 900px;
+	min-height: 1200px;
 	margin: 0 auto;
 }
 

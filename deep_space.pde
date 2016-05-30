@@ -6,7 +6,7 @@ int currentPlanet = 0;
 float G = 2;
 
 void setup(){
-  size(2000, 2000);
+  size(1000, 1000);
   background(8, 126, 139);
   cursor(CROSS);
   planets = new Planet[numPlanets];

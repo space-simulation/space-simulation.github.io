@@ -18,6 +18,12 @@ canvas.deep_space {
 	right: 0;
 }
 
+#wrap {
+	width: 900px;
+	margin: 0 auto;
+}
+
+
 div.body {
 	padding: 0;
 	margin: auto;
@@ -27,5 +33,4 @@ div.body {
 	bottom: 0;
 	left: 0;
 	right: 0;
-	
 }

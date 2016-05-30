@@ -34,3 +34,15 @@ div.body {
 	left: 0;
 	right: 0;
 }
+
+div.block {
+	border: 1px;
+	border-style: solid;
+	border-color: #000000;
+	padding: 4px;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 4em;
+	margin: 12px;
+	text-align: center;
+}

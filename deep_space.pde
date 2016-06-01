@@ -95,16 +95,16 @@ class Planet {
                   if (abs(planets[i].xPos - xPos) < (rad + planets[i].rad - 7) && abs(planets[i].yPos - yPos) < (rad + planets[i].rad - 7)) {
                     this.merge(mass, rad, xPos, yPos, xVel, yVel, i, planets[i].mass, planets[i].rad, planets[i].xPos, planets[i].yPos, planets[i].xVel, planets[i].yVel);
                     //Bouncy walls (I put it up here because otherwise it won't happen to newly-mergeds
-                    if (xPos > width-rad+5 || xPos < rad-5){
+                    if (xPos >= width-rad+5 || xPos <= rad-5){
                       this.on = false;
                     }
-                    if (yPos > height-rad+5 || yPos < rad-5) {
+                    if (yPos >= height-rad+5 || yPos <= rad-5) {
                       this.on = false;
                     }
-                    if (xPos > width-rad || xPos < rad) {
+                    if (xPos >= width-rad || xPos <= rad) {
                       xVel *= -1;
                     }
-                    if (yPos > height-rad || yPos < rad) {
+                    if (yPos >= height-rad || yPos <= rad) {
                       yVel *= -1;
                     }
                     break; //This is necessary. I don't know why.  Just leave it there and forget about this whole if loop.
@@ -161,16 +161,16 @@ class Planet {
                   if (abs(planets[i].xPos - xPos) < (rad + planets[i].rad - 7) && abs(planets[i].yPos - yPos) < (rad + planets[i].rad - 7)) {
                     this.merge(mass, rad, xPos, yPos, xVel, yVel, i, planets[i].mass, planets[i].rad, planets[i].xPos, planets[i].yPos, planets[i].xVel, planets[i].yVel);
                     //Bouncy walls (I put it up here because otherwise it won't happen to newly-mergeds
-                    if (xPos > width-rad+5 || xPos < rad-5){
+                    if (xPos >= width-rad+5 || xPos <= rad-5){
                       this.on = false;
                     }
-                    if (yPos > height-rad+5 || yPos < rad-5) {
+                    if (yPos >= height-rad+5 || yPos <= rad-5) {
                       this.on = false;
                     }
-                    if (xPos > width-rad || xPos < rad) {
+                    if (xPos >= width-rad || xPos <= rad) {
                       xVel *= -1;
                     }
-                    if (yPos > height-rad || yPos < rad) {
+                    if (yPos >= height-rad || yPos <= rad) {
                       yVel *= -1;
                     }
                     break; //This is necessary. I don't know why.  Just leave it there and forget about this whole if loop.
@@ -229,16 +229,16 @@ class Planet {
       yPos += yVel;
       
       //Bouncy walls
-      if (xPos > width-rad+5 || xPos < rad-5){
+      if (xPos >= width-rad+5 || xPos <= rad-5){
         this.on = false;
       }
-      if (yPos > height-rad+5 || yPos < rad-5) {
+      if (yPos >= height-rad+5 || yPos <= rad-5) {
         this.on = false;
       }
-      if (xPos > width-rad || xPos < rad) {
+      if (xPos >= width-rad || xPos <= rad) {
         xVel *= -1;
       }
-      if (yPos > height-rad || yPos < rad) {
+      if (yPos >= height-rad || yPos <= rad) {
         yVel *= -1;
       }
       

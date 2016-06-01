@@ -71,7 +71,7 @@ class Planet {
     yPos = newYPos;
     rad = newRad;
     mass = rad * rad;
-    float test = (float) Math.random() * 15;
+    float test = (float) Math.random() * 400;
     if (test > 1) {
       anti = false;
     } else {

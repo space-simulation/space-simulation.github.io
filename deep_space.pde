@@ -1,10 +1,10 @@
 Planet[] planets;
 int numPlanets = 500;
 int currentPlanet = 0;
-
+HScrollbar gslider;
 
 //Gravitational Constant
-float G = .03;
+float G;
 
 void setup(){
   size(800, 600);
@@ -14,38 +14,62 @@ void setup(){
   for (int i = 0; i < planets.length; i++) {
     planets[i] = new Planet();
   }
+  gslider = new HScrollbar(400, 8, /*width*/400, 16, 16);
+  textSize(18);
+  fill(0);
+  text("Gravitational Constant", 500, 35);
 }
 
 void draw() {
   background(8, 126, 139);
+  
   for (int i = 0; i < numPlanets; i++) {
-
+    G = .001 * exp( 46.05 * (gslider.getPos()/7958.56) - 0.0524847 );
+    print (" G equals:"); print(G);
     planets[i].display();
     planets[i].move();
     
+    gslider.update();
+    gslider.display();
   }
+  textSize(18);
+  fill(0);
+  text("Gravitational Constant", 500, 35);
 }
 
 void mousePressed() {
-  if (mouseButton == LEFT) {
-    double randX = Math.random() * 5 - 2.5;
-    double randY = Math.random() * 5 - 2.5;
-    float X = (float) randX;
-    float Y = (float) randY;
-    double rand = Math.random() * 6 + 3;
-    float r = (float) rand;
-    planets[currentPlanet].start(mouseX, mouseY, X, Y, r);
-    currentPlanet++;
-    if (currentPlanet >= numPlanets) {
-      currentPlanet = 0;
-    }
-  } else if (mouseButton == RIGHT) {
-    background(8, 126, 139);
-    for (int i = 0; i < numPlanets; i++) {
-      planets[i].on = false;
+  if (gslider.over != true) {
+    if (mouseButton == LEFT) {
+      //Generate random parameters
+      double randX = Math.random() * 5 - 2.5;
+      double randY = Math.random() * 5 - 2.5;
+      float X = (float) randX;
+      float Y = (float) randY;
+      double rand = Math.random() * 6 + 3;
+      float r = (float) rand;
+      //Create new (random) planet
+      planets[currentPlanet].start(mouseX, mouseY, X, Y, r);
+      currentPlanet++;
+      if (currentPlanet >= numPlanets) {
+        currentPlanet = 0;
+      }
+      
+      //Right-click to reset
+    } else if (mouseButton == RIGHT) {
+      background(8, 126, 139);
+      textSize(18);
+      fill(0);
+      text("Gravitational Constant", 500, 35);
+      for (int i = 0; i < numPlanets; i++) {
+        planets[i].on = false;
+      }
     }
   }
 }
+
+
+//------------------------------------------------------------------------------------------------------------------------
+
 
 class Planet {
   float rad;
@@ -293,4 +317,90 @@ class Planet {
   }
   
   
+}
+
+
+
+
+
+
+
+
+
+
+
+class HScrollbar {
+  int swidth, sheight;    // width and height of bar
+  float xpos, ypos;       // x and y position of bar
+  float spos, newspos;    // x position of slider
+  float sposMin, sposMax; // max and min values of slider
+  int loose;              // how loose/heavy
+  boolean over;           // is the mouse over the slider?
+  boolean locked;
+  float ratio;
+
+  HScrollbar (float xp, float yp, int sw, int sh, int l) {
+    swidth = sw;
+    sheight = sh;
+    int widthtoheight = sw - sh;
+    ratio = (float)sw / (float)widthtoheight;
+    xpos = xp;
+    ypos = yp-sheight/2;
+    spos = xpos + swidth/2 - sheight/2;
+    newspos = spos;
+    sposMin = xpos;
+    sposMax = xpos + swidth - sheight;
+    loose = l;
+  }
+
+  void update() {
+    if (overEvent()) {
+      over = true;
+    } else {
+      over = false;
+    }
+    if (mousePressed && over) {
+      locked = true;
+    }
+    if (!mousePressed) {
+      locked = false;
+    }
+    if (locked) {
+      newspos = constrain(mouseX-sheight/2, sposMin, sposMax);
+    }
+    if (abs(newspos - spos) > 1) {
+      spos = spos + (newspos-spos)/loose;
+    }
+  }
+
+  float constrain(float val, float minv, float maxv) {
+    return min(max(val, minv), maxv);
+  }
+
+  boolean overEvent() {
+    if (mouseX > xpos && mouseX < xpos+swidth &&
+       mouseY > ypos && mouseY < ypos+sheight) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void display() {
+    noStroke();
+    fill(204);
+    rect(xpos, ypos, swidth, sheight);
+    if (over || locked) {
+      fill(0, 0, 0);
+    } else {
+      fill(102, 102, 102);
+    }
+    rect(spos, ypos, sheight, sheight);
+  }
+
+  float getPos() {
+    // Convert spos to be values between
+    // 0 and the total width of the scrollbar
+    return spos * ratio;
+  }
 }

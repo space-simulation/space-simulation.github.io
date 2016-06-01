@@ -61,6 +61,7 @@ void mousePressed() {
       textSize(18);
       fill(0);
       text("Gravitational Constant", 500, 35);
+      gslider.display();
       for (int i = 0; i < numPlanets; i++) {
         planets[i].on = false;
       }

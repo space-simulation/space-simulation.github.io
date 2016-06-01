@@ -359,10 +359,11 @@ class HScrollbar {
     } else {
       over = false;
     }
+    
     if (mousePressed && over) {
       locked = true;
     }
-    if (!mousePressed) {
+    if (!mousePressed || !over) {
       locked = false;
     }
     if (locked) {

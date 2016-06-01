@@ -15,6 +15,7 @@ void setup(){
     planets[i] = new Planet();
   }
   gslider = new HScrollbar(400, 8, /*width*/400, 16, 16);
+  gslider.display();
   textSize(18);
   fill(0);
   text("Gravitational Constant", 500, 35);

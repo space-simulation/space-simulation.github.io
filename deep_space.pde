@@ -120,8 +120,8 @@ class Planet {
                 if (planets[i].on == true && planets[i] != this) {
                 float xDist = planets[i].xPos - xPos;
                 float yDist = planets[i].yPos - yPos;
-                float dist = sqrt((xDist * xDist) + (yDist * yDist))
-                  if ((xDist) < (rad + planets[i].rad - 7)) {
+                float dist = sqrt((xDist * xDist) + (yDist * yDist));
+                  if ((dist) < (rad + planets[i].rad - 7)) {
                     this.merge(mass, rad, xPos, yPos, xVel, yVel, i, planets[i].mass, planets[i].rad, planets[i].xPos, planets[i].yPos, planets[i].xVel, planets[i].yVel);
                     //Bouncy walls (I put it up here because otherwise it won't happen to newly-mergeds
                     if (xPos >= width-rad+5 || xPos <= rad-5){
@@ -189,7 +189,7 @@ class Planet {
                 if (planets[i].on == true && planets[i] != this) {
                 float xDist = planets[i].xPos - xPos;
                 float yDist = planets[i].yPos - yPos;
-                float dist = sqrt((xDist * xDist) + (yDist * yDist))
+                float dist = sqrt((xDist * xDist) + (yDist * yDist));
                   if (dist < (rad + planets[i].rad - 7)) {
                     this.merge(mass, rad, xPos, yPos, xVel, yVel, i, planets[i].mass, planets[i].rad, planets[i].xPos, planets[i].yPos, planets[i].xVel, planets[i].yVel);
                     //Bouncy walls (I put it up here because otherwise it won't happen to newly-mergeds
